@@ -1,0 +1,135 @@
+<!--nav class="navbar navbar-dark bg-primary">
+  <div class="container"><a class="navbar-brand" href="/"> POLIROUTES</a></div>
+    
+  </nav-->
+  <section class="vh-100 gradient-custom">
+    <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
+      <div class="container">
+        <br>
+        <h1 class="navbar-brand" routerLink="/">Routes Politecnico</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/addConductor">Registro de conductores</a>
+          </li>
+          <li class="nav-item" >
+            
+            <a class="nav-link" routerLink="/login">Log Out</a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+    </nav>
+
+    <br>
+    <br>
+    
+  <div  class="text-white" style="text-align:center">
+    <h1 class="fw-bold mb-2 text-uppercase">
+      Routes Politecnico
+    </h1>
+  </div>
+  <br>
+    
+
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mt-4" >
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-header">
+            <h2 class="fw-bold mb-2 text-uppercase">Historial de rutas</h2>
+          </div>
+
+          
+          <div class="card-body ">
+              <table class="table text-white" >
+        
+                  <thead>
+                      <tr>
+                          <th>Numero de bus</th>
+                          <th>Conductor</th>
+                          
+                          <th>Cantidad de sillas vacias</th>
+                          <th>Fecha de salida</th>
+                          <th>Hora de salida</th>
+                          
+                          
+                      </tr>
+                     
+  
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let Ruta of rutasArray">
+                        <td>{{Ruta.number}}</td>
+                          <td>{{Ruta.driver.name}}</td>
+                          <td>{{Ruta.chairNumber}}</td>
+                          <td>{{Ruta.dateOut}} </td>
+                          <td>{{Ruta.hourOut}} </td>
+                          
+                          
+                          <td>
+                              <button class="btn btn-warning" (click)="enviarMSM(Ruta)">Cancelar</button>
+                              <!--button class="btn btn-danger"(click)="borrar()" ngIF="recetaArray.id !== 0" style="margin-left: 10px">Borrar</button-->
+                          </td>
+                      </tr>
+                      
+                  </tbody>
+  
+              </table>
+          </div>
+  
+      </div>
+  
+      </div>
+      <div class="col-md-4 mt-4" >
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-header">
+              <h3>REGISTRO DE RUTA</h3>
+          </div>
+          <div class="card-body">
+              <form action="">
+                <div class="form-group  mt-4">
+                      
+                      
+                
+  
+              </div>
+              <div class="form-group  mt-4">
+                <input [(ngModel)]="nuevaRuta.number"id="as" name="first" placeholder="Numero de bus" class="form-control">
+                <br>
+                
+                <select [(ngModel)]="opcionSeleccionado" (change)="tomarNombre()" id="conduc" name="first" placeholder="Nombre" class="form-control">
+                  <option value="0">Selecciona un conductor</option>
+                  <option  *ngFor="let Conductor of conductoresArray">{{Conductor.name}}</option>
+                </select>
+                <br>
+                <input [(ngModel)]="nuevaRuta.chairNumber" name="first" placeholder="Sillas vacias" class="form-control"> 
+                <br> 
+                <input [(ngModel)]="nuevaRuta.dateOut" name="first" placeholder="Fecha de salida" class="form-control"> 
+                <br>
+                <input [(ngModel)]="nuevaRuta.hourOut" name="first" placeholder="Hora de salida" class="form-control"> 
+                <br>
+                
+  
+            </div>
+           
+                  
+                  
+                  <button [hidden]="opcionSeleccionado == '0'" (click)="guardar()" class="btn btn-danger  mt-4" >Guardar</button>
+                  
+                  
+              </form>
+              
+         
+        
+      </div>
+    </div>
+  
+  </div>
+  
